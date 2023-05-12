@@ -1,18 +1,12 @@
 
 import PlaneMap from '@/components/plane-map'
 import styles from './page.module.css'
+import { getPlanes } from '@/lib/planes';
+import SideBar from '@/components/side-bar';
 
 
-async function getData(): Promise<OpenSkyResponse> {
-  const res = await fetch('https://opensky-network.org/api/states/all?lomin=-78&lamin=38&lomax=-76&lamax=40');
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
+async function getData(): Promise<OpenSkyObj> {
+  return getPlanes(false);
 }
 
 export default async function Home() {
@@ -23,7 +17,7 @@ export default async function Home() {
         Algo Tester Time: {data?.time}
       </div>
       <div className={styles.content}><PlaneMap data={data} /></div>
-      <div className={styles.sidebar}>Sidebar</div>
+      <div className={styles.sidebar}><SideBar data={data} /></div>
     </main>
   )
 }

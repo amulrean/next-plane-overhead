@@ -3,18 +3,15 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { NextPage } from 'next';
-
-const containerStyle = {
-    width: '600px',
-    height: '600px'
-};
+import styles from '../app/page.module.css'
 
 interface Props {
-    data?: OpenSkyResponse;
+    data?: OpenSkyObj;
 }
 
 const PlaneMap: NextPage<Props> = ({ data }) => {
     console.log(`Num of States: ${data?.states.length}`);
+    console.log(data);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string
@@ -50,7 +47,7 @@ const PlaneMap: NextPage<Props> = ({ data }) => {
 
     return isLoaded ? (
         <GoogleMap
-            mapContainerStyle={containerStyle}
+            mapContainerClassName={styles.plane_map}
             // center={center}
             // zoom={10}
             onLoad={onLoad}

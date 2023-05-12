@@ -1,5 +1,6 @@
 .sidebar {
   grid-area: sidebar;
+  overflow-y: auto;
 }
 
 .content {
@@ -17,9 +18,16 @@
 
 .main {
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: auto 200px;
+  grid-template-columns: auto 400px;
+  grid-template-rows: min-content auto;
   grid-template-areas:
     "header header"
     "content sidebar";
+  width: 100vw;
+  height: 100vh;
+}
+
+.plane_map {
+  width: 100%;
+  height: 100%;
 }
