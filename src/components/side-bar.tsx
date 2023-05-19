@@ -13,7 +13,7 @@ const SideBar: NextPage<Props> = ({ data }) => {
     const listItems = data?.states.map(state => {
         return (
         <li key={state.icao24}>
-        {state.icao24} {state.callSign} {state.originCountry}
+        {state.icao24} {state.callSign} {state.originCountry}   
         <br/>
         Altitude {state.geoAltitude} -  {state.latitude} - {state.longitude}
     </li>);

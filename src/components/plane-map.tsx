@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React from 'react';
 import { NextPage } from 'next';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import styles from '../app/page.module.css'
+import PlaneLayer from './plane-layer';
 
 interface Props {
-    data?: OpenSkyObj;
+    data: OpenSkyObj;
 }
 
 const PlaneMap: NextPage<Props> = ({ data }) => {
@@ -54,8 +55,7 @@ const PlaneMap: NextPage<Props> = ({ data }) => {
             onUnmount={onUnmount}
             onBoundsChanged={onBoundsChanged}
         >
-            { /* Child components, such as markers, info windows, etc. */}
-            <></>
+           <PlaneLayer states={data?.states}></PlaneLayer>
         </GoogleMap>
     ) : <></>
 }
