@@ -12,14 +12,16 @@ export async function getPlanes(live: boolean): Promise<OpenSkyObj> {
         }
         return res.json();
     } else {
-        return await Promise.resolve(createOpenSkyObj(sampleRes));
+        return await Promise.resolve(createOpenSkyObj(sampleRes as OpenSkyResponse));
     }
 }
 
-function createOpenSkyObj(response: any): OpenSkyObj {
+function createOpenSkyObj(response: OpenSkyResponse): OpenSkyObj {
     return {
         time: response.time,
-        states: response.states.map(stateArray => mapStateArrayToObj(stateArray))
+        states: response.states
+            .map(stateResponseArray => mapStateArrayToObj(stateResponseArray))
+            .filter(stateArray => filterStates(stateArray))
     }
 }
 
@@ -28,6 +30,26 @@ function mapStateArrayToObj(stateArray: any[]): OpenSkyState {
         icao24: stateArray[0],
         callSign: stateArray[1],
         originCountry: stateArray[2],
+        timePosition: stateArray[3],
+        lastContact: stateArray[4],
+        longitude: stateArray[5],
+        latitude: stateArray[6],
+        baroAltitude: stateArray[7],
+        onGround: stateArray[8],
+        velocity: stateArray[9],
+        trueTrack: stateArray[10],
+        verticalRate: stateArray[11],
+        sensors: stateArray[12],
+        geoAltitude: stateArray[13],
+        squawk: stateArray[14],
+        spi: stateArray[15],
+        positionSource: stateArray[16],
+        category: stateArray[17],
     }
+}
+
+function filterStates(state: OpenSkyState) {
+    return state.geoAltitude &&  state.geoAltitude > 10 &&
+    state.velocity && state.velocity > 10;
 }
 
