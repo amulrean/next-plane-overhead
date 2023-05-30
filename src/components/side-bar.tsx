@@ -15,8 +15,8 @@ const SideBar: NextPage<Props> = ({ data }) => {
         <li key={state.icao24}>
         {state.icao24} {state.callSign} {state.originCountry}   
         <br/>
-        Altitude {state.geoAltitude} -  {state.latitude} - {state.longitude}
-    </li>);
+        Altitude {state.geoAltitude} - Velocity {state.velocity}
+        </li>);
     }
         
     );
