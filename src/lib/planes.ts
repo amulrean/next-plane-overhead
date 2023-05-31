@@ -17,7 +17,7 @@ export async function getPlanes(live: boolean): Promise<OpenSkyObj> {
     }
 }
 
-function createOpenSkyObj(response: OpenSkyResponse): OpenSkyObj {
+export function createOpenSkyObj(response: OpenSkyResponse): OpenSkyObj {
     return {
         time: response.time,
         states: response.states

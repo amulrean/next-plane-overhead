@@ -6,17 +6,15 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import styles from '../app/page.module.css'
 import PlaneLayer from './plane-layer';
 
-interface Props {
-    data: OpenSkyObj;
-}
 
-const PlaneMap: NextPage<Props> = ({ data }) => {
+const PlaneMap: NextPage = () => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string
     })
 
-    const [map, setMap] = React.useState<google.maps.Map | null>(null)
+    const [map, setMap] = React.useState<google.maps.Map | null>(null);
+    
 
     const onLoad = React.useCallback(function callback(map: google.maps.Map) {
         const bounds: google.maps.LatLngBoundsLiteral = {
@@ -52,7 +50,7 @@ const PlaneMap: NextPage<Props> = ({ data }) => {
             onUnmount={onUnmount}
             onBoundsChanged={onBoundsChanged}
         >
-           <PlaneLayer states={data?.states}></PlaneLayer>
+            <PlaneLayer></PlaneLayer>
         </GoogleMap>
     ) : <></>
 }

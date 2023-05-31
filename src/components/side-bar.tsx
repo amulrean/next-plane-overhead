@@ -1,6 +1,8 @@
+'use client';
 import React from 'react'
 import { NextPage } from 'next';
 import SideBarHeader from './side-bar-header';
+import { usePlanes } from '@/lib/use-planes';
 
 interface Props {
     data?: OpenSkyObj;
@@ -8,8 +10,10 @@ interface Props {
 
 const SideBar: NextPage<Props> = ({ data }) => {
 
+    const { planes, isLoading, isError } = usePlanes();
 
-    const listItems = data?.states.map(state => {
+
+    const listItems = planes?.states.map(state => {
         return (
         <li key={state.icao24}>
         {state.icao24} {state.callSign} {state.originCountry}   
@@ -21,7 +25,7 @@ const SideBar: NextPage<Props> = ({ data }) => {
     );
 
     return <>
-    <SideBarHeader data={data}></SideBarHeader>
+    <SideBarHeader data={planes}></SideBarHeader>
     <ul>{listItems}</ul>
     </> 
     
