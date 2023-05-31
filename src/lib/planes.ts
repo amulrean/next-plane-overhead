@@ -3,14 +3,15 @@ import sampleRes from './sample-api-states.json';
 export async function getPlanes(live: boolean): Promise<OpenSkyObj> {
     if (live) {
 
-        const res = await fetch('https://opensky-network.org/api/states/all?lomin=-78&lamin=38&lomax=-76&lamax=40');
+        const res = await fetch('https://opensky-network.org/api/states/all?lomin=-78&lamin=38&lomax=-76&lamax=40', { next: { revalidate: 0 } });
 
         // Recommendation: handle errors
         if (!res.ok) {
             // This will activate the closest `error.js` Error Boundary
             throw new Error('Failed to fetch data');
         }
-        return res.json();
+        const liveResponse = await res.json() as OpenSkyResponse;
+        return createOpenSkyObj(liveResponse);
     } else {
         return await Promise.resolve(createOpenSkyObj(sampleRes as OpenSkyResponse));
     }

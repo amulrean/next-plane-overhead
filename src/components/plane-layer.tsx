@@ -1,6 +1,5 @@
-import { GoogleMap, Marker } from '@react-google-maps/api';
+import { Marker } from '@react-google-maps/api';
 import React from 'react';
-import planeIcon from './../../public/plane_nose_up.svg';
 
 type Props = {
     states: OpenSkyState[]
@@ -16,7 +15,7 @@ const PlaneLayer = (props: Props) => {
             lat: state.latitude,
             lng: state.longitude
         }
-        const svgMarker: google.maps.Symbol = {
+        const planeMarker: google.maps.Symbol = {
             path:PLANE_SVG_PATH,
             fillColor: "blue",
             fillOpacity: 0.8,
@@ -25,11 +24,7 @@ const PlaneLayer = (props: Props) => {
             scale: PLANE_SVG_ALTITUDE_MULTIPLIER * Math.log(state.geoAltitude),
             anchor: new google.maps.Point(0, 0),
           };
-        const icon:google.maps.Icon = {
-            url: planeIcon,
-            scaledSize: new google.maps.Size(24,24)
-        };
-        return <Marker key={state.icao24} position={position} icon={svgMarker}></Marker>
+        return <Marker key={state.icao24} position={position} icon={planeMarker}></Marker>;
    });
 
     return <>{planeMarkers}</>;

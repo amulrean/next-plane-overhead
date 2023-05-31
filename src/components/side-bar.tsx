@@ -1,7 +1,6 @@
-'use client';
-
 import React from 'react'
 import { NextPage } from 'next';
+import SideBarHeader from './side-bar-header';
 
 interface Props {
     data?: OpenSkyObj;
@@ -21,7 +20,11 @@ const SideBar: NextPage<Props> = ({ data }) => {
         
     );
 
-    return <ul>{listItems}</ul>
+    return <>
+    <SideBarHeader data={data}></SideBarHeader>
+    <ul>{listItems}</ul>
+    </> 
+    
 }
 
 export default React.memo(SideBar)

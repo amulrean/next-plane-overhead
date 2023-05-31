@@ -11,8 +11,6 @@ interface Props {
 }
 
 const PlaneMap: NextPage<Props> = ({ data }) => {
-    console.log(`Num of States: ${data?.states.length}`);
-    console.log(data);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string
@@ -28,17 +26,16 @@ const PlaneMap: NextPage<Props> = ({ data }) => {
             south: 38.59,
         };
         map.fitBounds(bounds);
-        console.log('map fit');
         setMap(map);
     }, [])
 
     const onBoundsChanged = React.useCallback(function callback() {
-        console.log("onBoundsChanged");
-        if (map != null) {
-            console.log(map.getBounds());
-            console.log(map.getBounds()?.getNorthEast());
-            console.log(map.getBounds()?.getSouthWest());
-        }
+        // console.log("onBoundsChanged");
+        // if (map != null) {
+        //     console.log(map.getBounds());
+        //     console.log(map.getBounds()?.getNorthEast());
+        //     console.log(map.getBounds()?.getSouthWest());
+        // }
     }, [map])
 
     const onUnmount = React.useCallback(function callback(map: google.maps.Map) {
