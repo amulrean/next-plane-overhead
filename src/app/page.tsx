@@ -11,7 +11,6 @@ async function getData(live: boolean): Promise<OpenSkyObj> {
 
 export default async function Home() {
 
-  // const [data, setData] = useState(await getData(true));
   // const data = await getData(true);
 
 

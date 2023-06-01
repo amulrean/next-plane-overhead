@@ -20,7 +20,7 @@ const SideBarHeader: NextPage<Props> = ({ data }) => {
         router.refresh();
      }
 
-    return <button onClick={handleRefresh}>Refresh {formattedDate}</button>
+    return <button >Refresh {formattedDate}</button>
 }
 
 export default React.memo(SideBarHeader)
