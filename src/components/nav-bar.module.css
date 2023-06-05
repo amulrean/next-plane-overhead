@@ -1,0 +1,17 @@
+.header {
+  grid-area: header;
+  background-color: #444;
+  color: #fff;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  padding: 14px 16px;
+}
+
+.link:hover {
+  background-color: #111;
+}

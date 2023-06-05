@@ -9,6 +9,8 @@ Create a root level file `.env.local` and add the following variables:
 
 ```
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+OPEN_SKY_NETWORK_USERNAME=
+OPEN_SKY_NETWORK_PASSWORD=
 ```
 
 Then, run the development server:

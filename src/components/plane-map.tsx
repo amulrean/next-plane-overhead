@@ -3,7 +3,7 @@
 import React from 'react';
 import { NextPage } from 'next';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import styles from '../app/page.module.css'
+import styles from '@/app/search/search.module.css'
 import PlaneLayer from './plane-layer';
 
 

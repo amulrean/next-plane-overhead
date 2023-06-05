@@ -1,0 +1,23 @@
+.sidebar {
+  grid-area: sidebar;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.content {
+  grid-area: content;
+}
+
+.main {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 400px;
+  grid-template-areas:
+    "content sidebar";
+  overflow: auto;
+}
+
+.plane_map {
+  width: 100%;
+  height: 100%;
+}
