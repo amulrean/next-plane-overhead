@@ -1,14 +1,14 @@
 
 import styles from './page.module.css'
-import { getPlanes } from '@/lib/planes';
+import { getOSFormattedStates } from '@/lib/planes';
 
-async function getData(live: boolean): Promise<OpenSkyObj> {
-  return getPlanes(live);
+async function getData(live: boolean): Promise<OSFormattedStates> {
+  return getOSFormattedStates(undefined, live);
 }
 
 export default async function Home() {
 
-  // const data = await getData(true);
+  const data = await getData(true);
 
 
   return (

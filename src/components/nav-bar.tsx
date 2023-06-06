@@ -1,4 +1,3 @@
-import React from 'react'
 import { NextPage } from 'next';
 import styles from './nav-bar.module.css'
 import Link from 'next/link';
@@ -13,4 +12,4 @@ const NavBar: NextPage = () => {
     
 }
 
-export default React.memo(NavBar)
+export default NavBar;

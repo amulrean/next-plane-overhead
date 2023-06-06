@@ -32,7 +32,7 @@ interface OpenSkyState {
     category: number;
 }
 
-interface OpenSkyObj {
+interface OSFormattedStates {
     time: number;
     states: OpenSkyState[];
 }

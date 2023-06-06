@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 
 interface Props {
-    data?: OpenSkyObj;
+    data?: OSFormattedStates;
 }
 
 const SideBarHeader: NextPage<Props> = ({ data }) => {

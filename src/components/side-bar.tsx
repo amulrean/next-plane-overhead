@@ -5,7 +5,7 @@ import SideBarHeader from './side-bar-header';
 import { usePlanes } from '@/lib/use-planes';
 
 interface Props {
-    data?: OpenSkyObj;
+    data?: OSFormattedStates;
 }
 
 const SideBar: NextPage<Props> = ({ data }) => {

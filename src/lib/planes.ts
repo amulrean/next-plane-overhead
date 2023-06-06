@@ -1,23 +1,46 @@
 import sampleRes from './sample-api-states.json';
 
-export async function getPlanes(live: boolean): Promise<OpenSkyObj> {
-    if (live) {
-
-        const res = await fetch('https://opensky-network.org/api/states/all?lomin=-78&lamin=38&lomax=-76&lamax=40', { next: { revalidate: 0 } });
-
-        // Recommendation: handle errors
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error('Failed to fetch data');
-        }
-        const liveResponse = await res.json() as OpenSkyResponse;
-        return createOpenSkyObj(liveResponse);
-    } else {
-        return await Promise.resolve(createOpenSkyObj(sampleRes as OpenSkyResponse));
-    }
+export interface OSStatesBoundingBox {
+    lomin: number;
+    lamin: number;
+    lomax: number;
+    lamax: number;
 }
 
-export function createOpenSkyObj(response: OpenSkyResponse): OpenSkyObj {
+export async function getOSStatesAll(): Promise<OpenSkyResponse> {
+    return getOSStates(undefined);
+}
+
+export async function getOSStates(bounds: OSStatesBoundingBox | undefined):  Promise<OpenSkyResponse> {
+
+    const params = bounds !== undefined ? `?lomin=${bounds.lomin}&lamin=${bounds.lamin}&lomax=${bounds.lomax}&lamax=${bounds.lamax}` : '';
+
+    const url = 'https://opensky-network.org/api/states/all' + params;
+
+    const res = await fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(`${process.env.OPEN_SKY_NETWORK_USERNAME}:${process.env.OPEN_SKY_NETWORK_PASSWORD}`)
+        },
+    });
+    // Recommendation: handle errors
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data');
+    }
+    return await res.json() as OpenSkyResponse;
+}
+
+
+export async function getOSFormattedStates(bounds: OSStatesBoundingBox | undefined, live: boolean = true): Promise<OSFormattedStates> {
+
+    const osStatesResponse = live ? await getOSStates(bounds) : sampleRes as OpenSkyResponse;
+
+    return formatOSResponse(osStatesResponse);
+}
+
+
+export function formatOSResponse(response: OpenSkyResponse): OSFormattedStates {
     return {
         time: response.time,
         states: response.states
