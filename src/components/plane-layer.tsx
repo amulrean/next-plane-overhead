@@ -9,7 +9,7 @@ const PLANE_SVG_ALTITUDE_MULTIPLIER = .003;
 
 const PlaneLayer = () => {
     const { planes, isLoading, isError } = usePlanes();
-    const planeMarkers = planes?.states.map(state => {
+    const planeMarkers = planes?.states.map((state: OpenSkyState) => {
         const position = {
             lat: state.latitude,
             lng: state.longitude
