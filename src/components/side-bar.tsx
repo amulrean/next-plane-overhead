@@ -13,7 +13,7 @@ const SideBar: NextPage<Props> = ({ data }) => {
     const { planes, isLoading, isError } = usePlanes();
 
 
-    const listItems = planes?.states.map(state => {
+    const listItems = planes?.states.map((state: OpenSkyState) => {
         return (
         <li key={state.icao24}>
         {state.icao24} {state.callSign} {state.originCountry}   
