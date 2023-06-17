@@ -33,6 +33,7 @@ interface OpenSkyState {
 }
 
 interface OSFormattedStates {
-    time: number;
+    date: string;
+    time: string;
     states: OpenSkyState[];
 }

@@ -1,4 +1,5 @@
 import sampleRes from './sample-api-states.json';
+import { format } from 'date-fns';
 
 export interface OSStatesBoundingBox {
     lomin: number;
@@ -42,7 +43,8 @@ export async function getOSFormattedStates(bounds: OSStatesBoundingBox | undefin
 
 export function formatOSResponse(response: OpenSkyResponse): OSFormattedStates {
     return {
-        time: response.time,
+        date: format(new Date(response.time*1000), 'MM-dd-yyyy'),
+        time: format(new Date(response.time*1000), 'hh:mm:ss'),
         states: response.states
             .map(stateResponseArray => mapStateArrayToObj(stateResponseArray))
             .filter(stateArray => filterStates(stateArray))
