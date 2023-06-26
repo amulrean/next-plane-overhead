@@ -15,16 +15,16 @@ const PlaneLayer = () => {
             lng: state.longitude
         }
         const planeMarker: google.maps.Symbol = {
-            path:PLANE_SVG_PATH,
+            path: PLANE_SVG_PATH,
             fillColor: "blue",
             fillOpacity: 0.8,
             strokeWeight: 0,
             rotation: PLANE_SVG_ROTATION_OFFSET + state.trueTrack,
             scale: PLANE_SVG_ALTITUDE_MULTIPLIER * Math.log(state.geoAltitude),
             anchor: new google.maps.Point(0, 0),
-          };
+        };
         return <Marker key={state.icao24} position={position} icon={planeMarker}></Marker>;
-   });
+    });
 
     return <>{planeMarkers}</>;
 };

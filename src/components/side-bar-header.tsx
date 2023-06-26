@@ -17,7 +17,7 @@ const SideBarHeader: NextPage<Props> = ({ data }) => {
     const handleRefresh = (e: any) => {
         e.preventDefault();
         router.refresh();
-     }
+    }
 
     return <button >Refresh {formattedDate}</button>
 }

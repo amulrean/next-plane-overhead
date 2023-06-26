@@ -10,10 +10,10 @@ export default async function Home() {
     <div className={styles.main}>
       <div className={styles.content}>
         <PlaneMap />
-        </div>
+      </div>
       <div className={styles.sidebar}>
-        <SideBar/>
-        </div>
+        <SideBar />
+      </div>
     </div>
   )
 }

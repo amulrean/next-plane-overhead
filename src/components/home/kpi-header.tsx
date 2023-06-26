@@ -11,11 +11,11 @@ const KpiHeader: NextPage<Props> = ({ data }) => {
 
     const numPlanes = data?.states.length;
 
-    const fastestVelocity = data?.states.sort( (sA, sB) => {
+    const fastestVelocity = data?.states.sort((sA, sB) => {
         return sB.velocity - sA.velocity
     }).slice(0)[0].velocity;
 
-    const hightestAltitude = data?.states.sort( (sA, sB) => {
+    const hightestAltitude = data?.states.sort((sA, sB) => {
         return sB.geoAltitude - sA.geoAltitude
     }).slice(0)[0].geoAltitude;
 
@@ -30,7 +30,7 @@ const KpiHeader: NextPage<Props> = ({ data }) => {
             <Kpi label='Last Updated' value={updatedDate + ''}></Kpi>
         </div>
     )
-    
+
 }
 
 export default React.memo(KpiHeader)

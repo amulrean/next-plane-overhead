@@ -12,7 +12,7 @@ export async function getOSStatesAll(): Promise<OpenSkyResponse> {
     return getOSStates(undefined);
 }
 
-export async function getOSStates(bounds: OSStatesBoundingBox | undefined):  Promise<OpenSkyResponse> {
+export async function getOSStates(bounds: OSStatesBoundingBox | undefined): Promise<OpenSkyResponse> {
 
     const params = bounds !== undefined ? `?lomin=${bounds.lomin}&lamin=${bounds.lamin}&lomax=${bounds.lomax}&lamax=${bounds.lamax}` : '';
 
@@ -43,8 +43,8 @@ export async function getOSFormattedStates(bounds: OSStatesBoundingBox | undefin
 
 export function formatOSResponse(response: OpenSkyResponse): OSFormattedStates {
     return {
-        date: format(new Date(response.time*1000), 'MM-dd-yyyy'),
-        time: format(new Date(response.time*1000), 'hh:mm:ss'),
+        date: format(new Date(response.time * 1000), 'MM-dd-yyyy'),
+        time: format(new Date(response.time * 1000), 'hh:mm:ss'),
         states: response.states
             .map(stateResponseArray => mapStateArrayToObj(stateResponseArray))
             .filter(stateArray => filterStates(stateArray))
@@ -75,7 +75,7 @@ function mapStateArrayToObj(stateArray: any[]): OpenSkyState {
 }
 
 function filterStates(state: OpenSkyState) {
-    return state.geoAltitude &&  state.geoAltitude > 10 &&
-    state.velocity && state.velocity > 10;
+    return state.geoAltitude && state.geoAltitude > 10 &&
+        state.velocity && state.velocity > 10;
 }
 

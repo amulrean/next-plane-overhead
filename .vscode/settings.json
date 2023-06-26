@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "css.lint.unknownAtRules": "ignore",
+    "formatFiles.excludedFolders": [
+        "node_modules",
+        ".vscode",
+        ".git",
+        "dist",
+        ".chrome",
+        ".next"
+    ]
+}

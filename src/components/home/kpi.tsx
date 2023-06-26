@@ -16,8 +16,8 @@ const Kpi: NextPage<Props> = ({ value, label, image }) => {
                 <h2 className={styles.topic}>{label}</h2>
             </div>
             {image && <img src={image}
-                alt={label}/>}
-        </div>      
+                alt={label} />}
+        </div>
     )
 }
 

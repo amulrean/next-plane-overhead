@@ -10,9 +10,9 @@ interface Props {
 const FastestPlanes: NextPage<Props> = ({ data }) => {
 
 
-    const topFastest = data?.states.sort( (sA, sB) => {
+    const topFastest = data?.states.sort((sA, sB) => {
         return sB.velocity - sA.velocity
-    }).slice(0,4);
+    }).slice(0, 4);
 
 
 
@@ -27,7 +27,7 @@ const FastestPlanes: NextPage<Props> = ({ data }) => {
             </div>
         );
     }
-        
+
     );
 
     return (
@@ -39,20 +39,20 @@ const FastestPlanes: NextPage<Props> = ({ data }) => {
 
             <div className={styles.report_body}>
                 <div className={styles.report_topic_heading}>
-                        <h3 className={styles.t_op}>ICAO24</h3>
-                        <h3 className={styles.t_op}>Call Sign</h3>
-                        <h3 className={styles.t_op}>Origin Country</h3>
-                        <h3 className={styles.t_op}>Altitude</h3>
-                        <h3 className={styles.t_op}>Velocity</h3>
+                    <h3 className={styles.t_op}>ICAO24</h3>
+                    <h3 className={styles.t_op}>Call Sign</h3>
+                    <h3 className={styles.t_op}>Origin Country</h3>
+                    <h3 className={styles.t_op}>Altitude</h3>
+                    <h3 className={styles.t_op}>Velocity</h3>
                 </div>
- 
+
                 <div className={styles.items}>
                     {listItems}
                 </div>
             </div>
         </div>
     )
-    
+
 }
 
 export default React.memo(FastestPlanes)
