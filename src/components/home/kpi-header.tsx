@@ -1,7 +1,7 @@
 import React from 'react'
 import { NextPage } from 'next';
-import styles from './home.module.css'
 import Kpi from './kpi';
+import { ChevronDoubleUpIcon, BoltIcon, CalendarDaysIcon, MapPinIcon } from '@heroicons/react/24/solid';
 
 interface Props {
     data?: OSFormattedStates;
@@ -23,11 +23,11 @@ const KpiHeader: NextPage<Props> = ({ data }) => {
 
 
     return (
-        <div className={styles.box_container}>
-            <Kpi label='Planes' value={numPlanes + ''}></Kpi>
-            <Kpi label='Fastest' value={fastestVelocity + ''}></Kpi>
-            <Kpi label='Highest' value={hightestAltitude + ''}></Kpi>
-            <Kpi label='Last Updated' value={updatedDate + ''}></Kpi>
+        <div className='flex items-center justify-evenly'>
+            <Kpi label='Planes' value={numPlanes + ''} Icon={MapPinIcon}></Kpi>
+            <Kpi label='Fastest' value={fastestVelocity + ''} Icon={BoltIcon}></Kpi>
+            <Kpi label='Highest' value={hightestAltitude + ''} Icon={ChevronDoubleUpIcon}></Kpi>
+            <Kpi label='Last Updated' value={updatedDate + ''} Icon={CalendarDaysIcon}></Kpi>
         </div>
     )
 

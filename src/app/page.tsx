@@ -1,6 +1,5 @@
 
 import FastestPlanes from '@/components/home/fastest-planes';
-import styles from './page.module.css'
 import { getOSFormattedStates } from '@/lib/planes';
 import KpiHeader from '@/components/home/kpi-header';
 
@@ -14,9 +13,9 @@ export default async function Home() {
 
 
   return (
-    <div className={styles.main}>
+    <div className='mt-10'>
       <KpiHeader data={data}></KpiHeader>
-      <FastestPlanes data={data} num={5}></FastestPlanes>
+      {/* <FastestPlanes data={data} num={5}></FastestPlanes> */}
     </div>
   )
 }
