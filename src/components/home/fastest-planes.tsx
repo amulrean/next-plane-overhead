@@ -8,6 +8,37 @@ interface Props {
 
 const FastestPlanes: NextPage<Props> = ({ data }) => {
 
+    const tableColumnConfig = [{
+        label: 'ICAO24',
+        value: 'icao24'
+    },
+    {
+        label: 'Call Sign',
+        value: 'callSign'
+    },
+    {
+        label: 'Origin Country',
+        value: 'originCountry'
+    },
+    {
+        label: 'Altitude',
+        value: 'geoAltitude'
+    },
+    {
+        label: 'Velocity',
+        value: 'velocity'
+    }];
+
+    const headerItems = tableColumnConfig?.map(columnConfig => {
+        return (
+            <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                {columnConfig.label}
+            </th>
+        );
+    }
+
+    );
+
 
     const topFastest = data?.states.sort((sA, sB) => {
         return sB.velocity - sA.velocity
@@ -15,41 +46,42 @@ const FastestPlanes: NextPage<Props> = ({ data }) => {
 
 
 
+
     const listItems = topFastest?.map(state => {
         return (
-            <div className="" key={state.icao24}>
-                <h3 className="">{state.icao24}</h3>
-                <h3 className="">{state.callSign}</h3>
-                <h3 className="">{state.originCountry}</h3>
-                <h3 className="">{state.geoAltitude}</h3>
-                <h3 className="">{state.velocity}</h3>
-            </div>
+            <tr>
+                {
+                    tableColumnConfig.map(config => {
+                        return (
+                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                <p className="text-gray-900 whitespace-no-wrap">
+                                    {state[config.value]}
+                                </p>
+                            </td>
+                        )
+                    })
+                }
+            </tr>
         );
     }
 
     );
 
     return (
-        <div className="">
-            <div className="">
-                <h1 className="">Top Fastest Planes</h1>
-                <button className="">View All</button>
-            </div>
-
-            <div className="">
-                <div className="">
-                    <h3 className="">ICAO24</h3>
-                    <h3 className="">Call Sign</h3>
-                    <h3 className="">Origin Country</h3>
-                    <h3 className="">Altitude</h3>
-                    <h3 className="">Velocity</h3>
-                </div>
-
-                <div className="">
+        <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
+            <table className="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        {headerItems}
+                    </tr>
+                </thead>
+                <tbody>
                     {listItems}
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
+
+
     )
 
 }
