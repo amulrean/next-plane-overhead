@@ -1,8 +1,5 @@
 import NavBar from '@/components/nav-bar'
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Next Plane Overhead',
@@ -16,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <header>
           <NavBar></NavBar>
         </header>
