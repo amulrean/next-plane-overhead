@@ -1,17 +1,16 @@
 
 import PlaneMap from '@/components/plane-map'
-import styles from './search.module.css'
 import SideBar from '@/components/side-bar';
 
 
 export default async function Home() {
 
   return (
-    <div className={styles.main}>
-      <div className={styles.content}>
+    <div className="flex flex-grow">
+      <div className="flex-auto">
         <PlaneMap />
       </div>
-      <div className={styles.sidebar}>
+      <div className="flex-initial w-72 h-3/6 overflow-y-auto">
         <SideBar />
       </div>
     </div>

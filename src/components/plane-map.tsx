@@ -3,7 +3,6 @@
 import React from 'react';
 import { NextPage } from 'next';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import styles from '@/app/search/search.module.css'
 import PlaneLayer from './plane-layer';
 
 
@@ -41,9 +40,14 @@ const PlaneMap: NextPage = () => {
         setMap(null);
     }, [])
 
+    const containerStyle = {
+        width: '100%',
+        height: '100%'
+    };
+
     return isLoaded ? (
         <GoogleMap
-            mapContainerClassName={styles.plane_map}
+            mapContainerStyle={containerStyle}
             // center={center}
             // zoom={10}
             onLoad={onLoad}
