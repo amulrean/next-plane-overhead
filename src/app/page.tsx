@@ -13,12 +13,11 @@ export default async function Home() {
 
 
   return (
-    <div className='flex flex-col items-center justify-evenly'>
-      <div className='mt-10 flex flex-col space-y-10 max-w-screen-lg'>
+    <div className=''>
+      <div className='mt-10 space-y-10 max-w-screen-lg'>
         <KpiHeader data={data}></KpiHeader>
         <FastestPlanes data={data} num={5}></FastestPlanes>
       </div>
     </div>
-
   )
 }

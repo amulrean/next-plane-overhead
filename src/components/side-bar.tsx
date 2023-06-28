@@ -24,10 +24,10 @@ const SideBar: NextPage<Props> = ({ data }) => {
 
     );
 
-    return <>
+    return <div className='w-96 h-96 overflow-y-auto'>
         <SideBarHeader data={planes}></SideBarHeader>
         <ul>{listItems}</ul>
-    </>
+    </div>
 
 }
 

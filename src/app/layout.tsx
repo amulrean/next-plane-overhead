@@ -13,11 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='flex flex-col h-screen'>
+      <body className='grid grid-rows-[auto,1fr] h-screen'>
         <header>
           <NavBar></NavBar>
         </header>
-        <main className='flex flex-grow'>
+        <main>
           {children}
         </main>
       </body>
