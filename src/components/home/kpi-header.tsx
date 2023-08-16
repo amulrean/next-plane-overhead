@@ -1,7 +1,7 @@
 import React from 'react'
 import { NextPage } from 'next';
 import Kpi from './kpi';
-import { ChevronDoubleUpIcon, BoltIcon, CalendarDaysIcon, MapPinIcon } from '@heroicons/react/24/solid';
+import { ChevronDoubleUpIcon, BoltIcon, CalendarDaysIcon, ClockIcon, MapPinIcon } from '@heroicons/react/24/solid';
 
 interface Props {
     data?: OSFormattedStates;
@@ -9,25 +9,13 @@ interface Props {
 
 const KpiHeader: NextPage<Props> = ({ data }) => {
 
-    const numPlanes = data?.states.length;
-
-    const fastestVelocity = data?.states.sort((sA, sB) => {
-        return sB.velocity - sA.velocity
-    }).slice(0)[0].velocity;
-
-    const hightestAltitude = data?.states.sort((sA, sB) => {
-        return sB.geoAltitude - sA.geoAltitude
-    }).slice(0)[0].geoAltitude;
-
-    const updatedDate = data?.time;
-
-
     return (
         <div className='flex items-center justify-evenly'>
-            <Kpi label='Planes' value={numPlanes + ''} Icon={MapPinIcon}></Kpi>
-            <Kpi label='Fastest' value={fastestVelocity + ''} Icon={BoltIcon}></Kpi>
-            <Kpi label='Highest' value={hightestAltitude + ''} Icon={ChevronDoubleUpIcon}></Kpi>
-            <Kpi label='Last Updated' value={updatedDate + ''} Icon={CalendarDaysIcon}></Kpi>
+            <Kpi label='Planes' value={data?.numPlanes + ''} icon={MapPinIcon}></Kpi>
+            <Kpi label='Fastest' value={data?.fastestVelocity + ' mph'} icon={BoltIcon}></Kpi>
+            <Kpi label='Highest' value={data?.hightestAltitude + ' ft'} icon={ChevronDoubleUpIcon}></Kpi>
+            <Kpi label='Date Updated' value={data?.date + ''} icon={CalendarDaysIcon}></Kpi>
+            <Kpi label='Time Updated' value={data?.time + ''} icon={ClockIcon}></Kpi>
         </div>
     )
 

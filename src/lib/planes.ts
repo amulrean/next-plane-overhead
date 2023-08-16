@@ -42,12 +42,27 @@ export async function getOSFormattedStates(bounds: OSStatesBoundingBox | undefin
 
 
 export function formatOSResponse(response: OpenSkyResponse): OSFormattedStates {
+    const filteredStates = response.states
+        .map(stateResponseArray => mapStateArrayToObj(stateResponseArray))
+        .filter(stateArray => filterStates(stateArray));
+
+    const numPlanes = filteredStates.length;
+
+    const fastestVelocity = filteredStates.sort((sA, sB) => {
+        return sB.velocity - sA.velocity
+    }).slice(0)[0].velocity;
+
+    const hightestAltitude = filteredStates.sort((sA, sB) => {
+        return sB.geoAltitude - sA.geoAltitude
+    }).slice(0)[0].geoAltitude;
+
     return {
         date: format(new Date(response.time * 1000), 'MM-dd-yyyy'),
         time: format(new Date(response.time * 1000), 'hh:mm:ss'),
-        states: response.states
-            .map(stateResponseArray => mapStateArrayToObj(stateResponseArray))
-            .filter(stateArray => filterStates(stateArray))
+        numPlanes: numPlanes,
+        fastestVelocity: fastestVelocity,
+        hightestAltitude: hightestAltitude,
+        states: filteredStates
     }
 }
 
@@ -62,11 +77,11 @@ function mapStateArrayToObj(stateArray: any[]): OpenSkyState {
         latitude: stateArray[6],
         baroAltitude: stateArray[7],
         onGround: stateArray[8],
-        velocity: stateArray[9],
+        velocity: Math.round(stateArray[9] * 0.44704), //M/s to MPH
         trueTrack: stateArray[10],
         verticalRate: stateArray[11],
         sensors: stateArray[12],
-        geoAltitude: stateArray[13],
+        geoAltitude: Math.round(stateArray[13] * 3.2808), //Meeters to Ft
         squawk: stateArray[14],
         spi: stateArray[15],
         positionSource: stateArray[16],

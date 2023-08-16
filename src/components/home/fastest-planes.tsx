@@ -1,14 +1,20 @@
 import React from 'react'
 import { NextPage } from 'next';
+import { ObjectType } from 'typescript';
 
 interface Props {
     data?: OSFormattedStates;
     num: number;
 }
 
+interface TableColumnConfigValue {
+    label: string;
+    value: string;
+}
+
 const FastestPlanes: NextPage<Props> = ({ data }) => {
 
-    const tableColumnConfig = [{
+    const tableColumnConfig: TableColumnConfigValue[] = [{
         label: 'ICAO24',
         value: 'icao24'
     },
@@ -31,7 +37,7 @@ const FastestPlanes: NextPage<Props> = ({ data }) => {
 
     const headerItems = tableColumnConfig?.map(columnConfig => {
         return (
-            <th scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+            <th key={columnConfig.label} scope="col" className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
                 {columnConfig.label}
             </th>
         );
@@ -47,15 +53,15 @@ const FastestPlanes: NextPage<Props> = ({ data }) => {
 
 
 
-    const listItems = topFastest?.map(state => {
+    const listItems = topFastest?.map((state: OpenSkyState) => {
         return (
-            <tr>
+            <tr key={state.callSign}>
                 {
                     tableColumnConfig.map(config => {
                         return (
-                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                            <td key={config.label} className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                 <p className="text-gray-900 whitespace-no-wrap">
-                                    {state[config.value]}
+                                    {state[config.value as keyof typeof state]}
                                 </p>
                             </td>
                         )

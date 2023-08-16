@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 
@@ -14,7 +15,7 @@ const NavBar: NextPage = () => {
 
   const links = linkConfig.map(config => {
     return (
-      <Link className="text-gray-800 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href={config.href}>
+      <Link key={config.label} className="text-gray-800 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href={config.href}>
         {config.label}
       </Link>
     )
@@ -25,7 +26,7 @@ const NavBar: NextPage = () => {
       <div className="flex items-center justify-between h-16">
         <div className=" flex items-center">
           <a className="flex-shrink-0" href="/">
-            <img className="w-8 h-8" src="/plane_nose_up.svg" alt="Workflow" />
+            <Image className="w-8 h-8" width={32} height={32} src="/plane_nose_up.svg" alt="Workflow" />
           </a>
           <div className="hidden md:block">
             <div className="flex items-baseline ml-10 space-x-4">

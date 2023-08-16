@@ -35,5 +35,8 @@ interface OpenSkyState {
 interface OSFormattedStates {
     date: string;
     time: string;
+    numPlanes: number,
+    fastestVelocity: number,
+    hightestAltitude: number,
     states: OpenSkyState[];
 }
