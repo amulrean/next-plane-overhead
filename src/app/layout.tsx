@@ -1,5 +1,6 @@
 import NavBar from '@/components/nav-bar'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
   title: 'Next Plane Overhead',
@@ -19,6 +20,7 @@ export default function RootLayout({
         </header>
         <main>
           {children}
+          <Analytics />
         </main>
       </body>
     </html>
